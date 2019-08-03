@@ -6,6 +6,7 @@ try:
     from urllib import request
 except ImportError:
     print("请先安装urllib库")
+    print("Please install urllib library first,may be you can use command 'pip install urllib'.....")
     time.sleep(3)
     exit(0)
 from urllib import parse
@@ -14,19 +15,24 @@ try:
     import threading
 except ImportError:
     print("请先安装threading库")
+    print("Please install threading library first,may be you can use command 'pip install threading'.....")
     time.sleep(3)
     exit(0)
 def outp():#
     print("欢迎使用此脚本！")
-
+    print('Welcome!')
 outp()
+print('String Dictionary..')
 s=input("字符串字典(不输入则为0-9，a-z):")
 if not s:
     s='0123456789zxcvbnmasdfghjklqwertyuiop'
 url=input("需要爆破的url:")
-postcode=input("需要传递的参数:")
+print('parameter  need to be POST..')
+postcode=input("需要POST的参数名称:")
+print('Enter the number of digits of the password to be cracked(At least four, up to eight)..')
 times=int(input('输入需要爆破的密码的位数(至少四位,最多八位):'))
 while times<4 or times>8:
+    print('Please try it again..')
     times = int(input('请再次输入爆破密码位数(至少四位,最多八位):'))
 datt=[]
 for i in s:#修改这里！！！！！！！！！！！！！！！！！！！！！！
@@ -39,7 +45,7 @@ for i in s:#修改这里！！！！！！！！！！！！！！！！！！�
                             datt.append(i + j + k + l + m )
                         elif times>5:
                             for n in s:
-               Commit new file                 if times==6:
+                                if times==6:
                                     datt.append(i + j + k + l + m + n )
                                 elif times>6:
                                     for a in s:
@@ -77,7 +83,7 @@ class Exploitthread(threading.Thread):
         self.name=name
     def run(self):
         tem = 0
-        print("%s Thread Starting Exploit......"% self.name)
+        print("%s Thread Starting Exploit....."% self.name)
         len1=-1
         len2=-2
         clen=0
